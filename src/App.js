@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import BoardContainer from "./components/BoardContainer";
+import MainBar from "./components/MainBar";
+import MainPage from "./components/MainPage";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Filterbar from "./components/extraComponents/Filterbar";
+import Heading from "./components/extraComponents/Heading";
+
 
 function App() {
+  const [toggle, setToggle]=useState(true)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="max-w-full mx-auto">
+      <Navbar toggle={toggle} setToggle={setToggle}/>
+      <MainPage>
+        <Sidebar toggle={toggle} setToggle={setToggle}/>
+        <MainBar>
+         <Heading/>
+         <Filterbar/>
+         <BoardContainer/>
+        </MainBar>
+      </MainPage>
     </div>
   );
 }
